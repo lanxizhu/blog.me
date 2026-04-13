@@ -26,8 +26,7 @@ import Icon from './Icon.astro'
        * @param ev MouseEvent
        */
       const handleClick = (func: () => void, ev: MouseEvent): void | Promise<void> => {
-        if (!document.startViewTransition)
-return func()
+        if (!document.startViewTransition) return func()
 
         const { clientX: x, clientY: y } = ev
 

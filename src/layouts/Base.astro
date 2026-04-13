@@ -1,5 +1,6 @@
 ---
 import { BaseHead, Footer, Header } from '@/components'
+import ArtDots from '@/components/ArtDots.astro'
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
@@ -25,5 +26,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
       <slot />
     </main>
     <Footer />
+
+    <ArtDots />
   </body>
 </html>

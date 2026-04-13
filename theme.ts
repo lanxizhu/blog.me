@@ -9,7 +9,7 @@ const light = {
     'hover': '#000000',
     'selection': '#dfdfdf',
     'activation': '#000000',
-    'bg': '#f3f3f3',
+    'bg': '#ffffff',
     'bg-reverse': '#050505',
     'sb-thumb': '#919191',
   },
