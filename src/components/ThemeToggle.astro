@@ -1,60 +1,49 @@
 ---
 // import { Icon } from ".";
-import Icon from "./Icon.astro";
+import Icon from './Icon.astro'
 ---
 
 <script>
-  import { useDark } from "@vueuse/core";
+  import { useDark } from '@vueuse/core'
 
   class ThemeToggle extends HTMLElement {
     constructor() {
-      super();
+      super()
 
-      const isDark = useDark({ storageKey: "blog-theme" });
+      const isDark = useDark({ storageKey: 'blog-theme' })
 
       /** Set the theme to dark/light mode. */
       const toggleTheme = (): void => {
-        isDark.value = !isDark.value;
+        isDark.value = !isDark.value
 
         // set html attribute data-theme
-        document.documentElement.setAttribute(
-          "data-theme",
-          isDark.value ? "dark" : "light"
-        );
-      };
+        document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+      }
 
       /**
        * Handle the click event.
        * @param func toggle theme function
        * @param ev MouseEvent
        */
-      const handleClick = (
-        func: () => void,
-        ev: MouseEvent
-      ): void | Promise<void> => {
-        if (!document.startViewTransition) return func();
+      const handleClick = (func: () => void, ev: MouseEvent): void | Promise<void> => {
+        if (!document.startViewTransition) 
+return func()
 
-        const { clientX: x, clientY: y } = ev;
+        const { clientX: x, clientY: y } = ev
 
         // Calculate the maximum circle radius from the mouse click position to the viewport
-        const endRadius = Math.hypot(
-          Math.max(x, innerWidth - x),
-          Math.max(y, innerHeight - y)
-        );
+        const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
 
-        document.documentElement.classList.add("theme-clip");
+        document.documentElement.classList.add('theme-clip')
 
         /**
          * see: https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
          */
-        const transition = document.startViewTransition(() => func());
+        const transition = document.startViewTransition(() => func())
 
         transition.ready.then(() => {
-          console.log("transition.ready");
-          const clipPath = [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-          ];
+          console.log('transition.ready')
+          const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
 
           document.documentElement.animate(
             {
@@ -62,25 +51,23 @@ import Icon from "./Icon.astro";
             },
             {
               duration: 400,
-              easing: "ease-out",
-              pseudoElement: isDark.value
-                ? "::view-transition-old(root)"
-                : "::view-transition-new(root)",
-            }
-          );
-        });
+              easing: 'ease-out',
+              pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
+            },
+          )
+        })
 
         transition.finished.then(() => {
-          document.documentElement.classList.remove("theme-clip");
-        });
-      };
+          document.documentElement.classList.remove('theme-clip')
+        })
+      }
 
       // Toggle the theme when a user clicks the button.
-      const button = document.getElementById("btn");
-      button?.addEventListener("click", (e) => handleClick(toggleTheme, e));
+      const button = document.getElementById('btn')
+      button?.addEventListener('click', (e) => handleClick(toggleTheme, e))
     }
   }
-  customElements.define("theme-toggle", ThemeToggle);
+  customElements.define('theme-toggle', ThemeToggle)
 </script>
 
 <theme-toggle>

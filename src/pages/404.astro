@@ -1,7 +1,7 @@
 ---
-import { Gravatar } from "@/components";
-import { BaseLayout } from "@/layouts";
-import { MINE_NAME } from "@/consts";
+import { Gravatar } from '@/components'
+import { BaseLayout } from '@/layouts'
+import { MINE_NAME } from '@/consts'
 ---
 
 <BaseLayout title="404 Not Found" description="404 Not Found">
@@ -11,7 +11,7 @@ import { MINE_NAME } from "@/consts";
         @apply relative select-none w-fit m-0 text-24 tracking-0.2 whitespace-pre-wrap;
 
         &:last-child:after {
-          content: "";
+          content: '';
           animation: flashing 0.5s ease-in-out infinite;
 
           @apply absolute w-16 h-32 right-0 top-0 block border-color-bg-reverse border-b-2 border-b-solid translate-x-100%;
@@ -43,89 +43,90 @@ import { MINE_NAME } from "@/consts";
   </slot>
   <script is:inline type="module">
     function initContent(isClear = false) {
-      const container = document.getElementById("container");
-      const all = container.querySelectorAll("p");
+      const container = document.getElementById('container')
+      const all = container.querySelectorAll('p')
 
       const content = Array.from(all).map((item) => {
-        return item.innerHTML.replace("&nbsp;", " ");
-      });
+        return item.innerHTML.replace('&nbsp;', ' ')
+      })
 
-      if (isClear) container.innerHTML = "<p></p>";
+      if (isClear) 
+container.innerHTML = '<p></p>'
 
-      return { container, content };
+      return { container, content }
     }
 
-    const { container, content } = initContent(true);
+    const { container, content } = initContent(true)
 
     function getLast() {
-      const all = container.querySelectorAll("p");
-      return all[all.length - 1];
+      const all = container.querySelectorAll('p')
+      return all[all.length - 1]
     }
 
     function add() {
-      let part = 0,
-        index = 0;
+      let part = 0
+      let index = 0
 
       const interval = setInterval(() => {
-        const text = content[part];
+        const text = content[part]
 
         if (index >= text.length) {
-          part += 1;
+          part += 1
 
           if (part >= content.length) {
-            clearInterval(interval);
+            clearInterval(interval)
 
             setTimeout(() => {
-              remove();
-            }, delay);
+              remove()
+            }, delay)
 
-            return;
+            return
           }
 
-          const newP = document.createElement("p");
-          container.appendChild(newP);
+          const newP = document.createElement('p')
+          container.appendChild(newP)
 
-          index = 0;
-          return;
+          index = 0
+          return
         }
 
-        const last = getLast();
-        last.innerHTML = last.innerHTML + text[index];
-        index += 1;
-      }, speed);
+        const last = getLast()
+        last.innerHTML = last.innerHTML + text[index]
+        index += 1
+      }, speed)
     }
 
     function remove() {
-      let part = content.length - 1;
-      let index = content[part].length - 1;
+      let part = content.length - 1
+      let index = content[part].length - 1
 
       const interval = setInterval(() => {
-        const text = content[part];
+        const text = content[part]
 
-        const last = getLast();
+        const last = getLast()
 
-        last.innerHTML = last.innerHTML.substring(0, index);
-        index -= 1;
+        last.innerHTML = last.innerHTML.substring(0, index)
+        index -= 1
 
         if (index < 0) {
-          part -= 1;
+          part -= 1
           if (part < 0) {
-            clearInterval(interval);
+            clearInterval(interval)
             setTimeout(() => {
-              add();
-            }, delay);
-            return;
+              add()
+            }, delay)
+            return
           }
-          last.remove();
-          index = content[part].length - 1;
+          last.remove()
+          index = content[part].length - 1
         }
-      }, speed);
+      }, speed)
     }
 
-    const speed = 100;
-    const delay = 2000;
+    const speed = 100
+    const delay = 2000
 
-    add();
+    add()
   </script>
 
   <div flex-center gap-40 flex-col>

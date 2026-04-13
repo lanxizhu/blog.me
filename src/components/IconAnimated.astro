@@ -1,51 +1,31 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { icons } from "./icons";
+import type { HTMLAttributes } from 'astro/types'
+import { icons } from './icons'
 
 interface Props {
-  icon: keyof typeof icons;
-  color?: string;
-  gradient?: boolean;
-  size?: string;
+  icon: keyof typeof icons
+  color?: string
+  gradient?: boolean
+  size?: string
 }
 
-const { gradient, icon } = Astro.props;
+const { gradient, icon } = Astro.props
 
-const { color, viewBox, size, path } = icons[icon];
+const { color, viewBox, size, path } = icons[icon]
 
-const attrs: HTMLAttributes<"svg"> = {};
-if (size) attrs.style = { "--size": size };
+const attrs: HTMLAttributes<'svg'> = {}
+if (size) attrs.style = { '--size': size }
 
-const gradientId =
-  "icon-gradient-" + Math.round(Math.random() * 10e12).toString(36);
+const gradientId = 'icon-gradient-' + Math.round(Math.random() * 10e12).toString(36)
 ---
 
 <icon-animated class="icon">
-  <div
-    class="filled"
-    color-invert={color === "#181717" ? "" : undefined}
-    style={{ "--color": color }}
-  >
-  </div>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="32"
-    height="32"
-    viewBox={viewBox}
-    aria-hidden="true"
-    {...attrs}
-  >
+  <div class="filled" color-invert={color === '#181717' ? '' : undefined} style={{ '--color': color }}></div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox={viewBox} aria-hidden="true" {...attrs}>
     <g set:html={path} />
     {
       gradient && (
-        <linearGradient
-          id={gradientId}
-          x1="23"
-          x2="235"
-          y1="43"
-          y2="202"
-          gradientUnits="userSpaceOnUse"
-        >
+        <linearGradient id={gradientId} x1="23" x2="235" y1="43" y2="202" gradientUnits="userSpaceOnUse">
           <stop stop-color="var(--gradient-stop-1)" />
           <stop offset=".5" stop-color="var(--gradient-stop-2)" />
           <stop offset="1" stop-color="var(--gradient-stop-3)" />

@@ -3,43 +3,45 @@
 ---
 
 <script>
-  import { useWindowScroll, watchDeep } from "@vueuse/core";
+  import { useWindowScroll, watchDeep } from '@vueuse/core'
 
   class ToTop extends HTMLElement {
     constructor() {
-      super();
+      super()
 
       const totop = () => {
         window.scrollTo({
           top: 0,
-          behavior: "smooth",
-        });
-      };
+          behavior: 'smooth',
+        })
+      }
 
-      const element = this.querySelector("button");
+      const element = this.querySelector('button')
 
-      element?.addEventListener("click", (e) => totop());
+      element?.addEventListener('click', (e) => totop())
 
-      const { y } = useWindowScroll();
+      const { y } = useWindowScroll()
 
       watchDeep(
         y,
         (value) => {
-          const element = this.querySelector("button");
+          const element = this.querySelector('button')
 
-          element.style.display = value > 300 ? "grid" : "none";
+          element.style.display = value > 300 ? 'grid' : 'none'
 
           if (value > 300) {
-            element?.classList.remove("op0", "pointer-events-none");
-          } else {
-            element?.classList.add("op0", "pointer-events-none");
+            element?.classList.remove('op0', 'pointer-events-none')
+          }
+ else {
+            element?.classList.add('op0', 'pointer-events-none')
           }
         },
         {
           immediate: true,
-        }
-      );
+        },
+      )
     }
+
     connectedCallback() {
       // console.log("The element has been attached to the DOM.");
     }
@@ -57,7 +59,7 @@
     }
   }
 
-  customElements.define("to-top", ToTop);
+  customElements.define('to-top', ToTop)
 </script>
 
 <to-top>
@@ -70,7 +72,7 @@
   }
   button {
     &::after {
-      content: "🡡";
+      content: '🡡';
       @apply absolute;
     }
   }

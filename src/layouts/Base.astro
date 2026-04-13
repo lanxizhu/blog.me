@@ -1,8 +1,8 @@
 ---
-import { BaseHead, Footer, Header } from "@/components";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import { BaseHead, Footer, Header } from '@/components'
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
 ---
 
 <html lang="en">
@@ -10,10 +10,10 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <BaseHead title={title} description={description} />
 
     <script is:inline>
-      const theme = localStorage.getItem("blog-theme");
+      const theme = localStorage.getItem('blog-theme')
 
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
       }
     </script>
 
