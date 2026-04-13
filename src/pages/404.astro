@@ -50,8 +50,7 @@ import { MINE_NAME } from '@/consts'
         return item.innerHTML.replace('&nbsp;', ' ')
       })
 
-      if (isClear)
-container.innerHTML = '<p></p>'
+      if (isClear) container.innerHTML = '<p></p>'
 
       return { container, content }
     }
@@ -101,7 +100,7 @@ container.innerHTML = '<p></p>'
       let index = content[part].length - 1
 
       const interval = setInterval(() => {
-        const text = content[part]
+        // const text = content[part]
 
         const last = getLast()
 
@@ -127,7 +126,7 @@ container.innerHTML = '<p></p>'
     const delay = 2000
 
     add()
-</script>
+  </script>
 
   <div flex-center gap-40 flex-col>
     <Gravatar size={160} />

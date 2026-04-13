@@ -4,7 +4,7 @@ import presetRemToPx from '@unocss/preset-rem-to-px'
 import {
   defineConfig,
   presetAttributify,
-  presetUno,
+  presetWind3,
   transformerDirectives,
 } from 'unocss'
 import presetTheme from 'unocss-preset-theme'
@@ -29,8 +29,8 @@ export default defineConfig({
     // [/^w-([\.\d]+)$/, ([_, num]) => ({ width: `${num}px` })],
   ],
   presets: [
-    presetUno(),
-    presetTheme({ theme: { dark, light } }),
+    presetWind3(),
+    presetTheme({ theme: { dark, light } }) as any,
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify({
       /* preset options */

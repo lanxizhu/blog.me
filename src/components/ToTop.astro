@@ -18,7 +18,7 @@
 
       const element = this.querySelector('button')
 
-      element?.addEventListener('click', (e) => totop())
+      element?.addEventListener('click', () => totop())
 
       const { y } = useWindowScroll()
 
@@ -26,6 +26,9 @@
         y,
         (value) => {
           const element = this.querySelector('button')
+
+          if (!element) 
+return
 
           element.style.display = value > 300 ? 'grid' : 'none'
 
@@ -54,7 +57,7 @@
       // console.log("The element has been moved to a new DOM.");
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(_name: string | null, _oldValue: string | null, _newValue: string | null) {
       // console.log(`${name} has changed from ${oldValue} to ${newValue}.`);
     }
   }
