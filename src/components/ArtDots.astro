@@ -34,8 +34,7 @@
     for (let x = -SPACING / 2; x < w + SPACING; x += SPACING) {
       for (let y = -SPACING / 2; y < h + SPACING; y += SPACING) {
         const id = `${x}-${y}`
-        if (existingPoints.has(id))
-continue
+        if (existingPoints.has(id)) continue
         existingPoints.add(id)
 
         const particle = new Particle(dotTexture)

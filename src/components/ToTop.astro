@@ -27,15 +27,13 @@
         (value) => {
           const element = this.querySelector('button')
 
-          if (!element) 
-return
+          if (!element) return
 
           element.style.display = value > 300 ? 'grid' : 'none'
 
           if (value > 300) {
             element?.classList.remove('op0', 'pointer-events-none')
-          }
- else {
+          } else {
             element?.classList.add('op0', 'pointer-events-none')
           }
         },
@@ -66,17 +64,17 @@ return
 </script>
 
 <to-top>
-  <button class="op0" btn-circle></button>
+  <button title="Scroll to top" class="op0">
+    <div class="i-ri-arrow-up-line"></div>
+  </button>
 </to-top>
 
 <style lang="scss">
   to-top {
-    @apply fixed bottom-5 right-5 z-1000;
-  }
-  button {
-    &::after {
-      content: '🡡';
-      @apply absolute;
+    @apply fixed bottom-3 right-3 z-100;
+
+    button {
+      @apply btn-circle p-0 w-10 h-10 bg-black/5 dark:bg-white/5 color-text flex-center transition-base;
     }
   }
 </style>
