@@ -1,10 +1,9 @@
-import presetRemToPx from '@unocss/preset-rem-to-px'
-
 // uno.config.ts
 import {
   defineConfig,
   presetAttributify,
   presetIcons,
+  presetWebFonts,
   presetWind3,
   transformerDirectives,
 } from 'unocss'
@@ -31,6 +30,39 @@ export default defineConfig({
   ],
   presets: [
     presetWind3(),
+    presetWebFonts({
+      provider: 'google', // default provider
+      fonts: {
+        // these will extend the default theme
+        'sans': 'Roboto',
+        'mono': ['Fira Code', 'Fira Mono:400,700'],
+        // custom ones
+        'lobster': 'Lobster',
+        'lato': [
+          {
+            name: 'Lato',
+            weights: ['400', '700'],
+            italic: true,
+          },
+          {
+            name: 'sans-serif',
+            provider: 'none',
+          },
+        ],
+        'saira-stencil': 'Saira Stencil',
+        'poetsen-one': [
+          {
+            name: 'Poetsen One',
+            weights: ['400', '700'],
+            italic: true,
+          },
+          {
+            name: 'sans-serif',
+            provider: 'none',
+          },
+        ],
+      },
+    }),
     presetTheme({ theme: { dark, light } }) as any,
     // presetRemToPx({ baseFontSize: 4 }),
     presetAttributify({
@@ -39,11 +71,12 @@ export default defineConfig({
     presetIcons({
       extraProperties: {
         'display': 'inline-block',
-        'height': '1.2em',
-        'width': '1.2em',
+        'height': '1.5em',
+        'width': '1.5em',
         'vertical-align': 'text-bottom',
       },
     }),
+
   ],
 
   transformers: [transformerDirectives()],

@@ -88,9 +88,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Poetsen One', sans-serif;
-
-  @apply: color-title m-b-2 line-height-tight;
+  @apply: font-poetsen-one color-title m-b-2 line-height-tight;
 }
 h1 {
   font-size: 3.052em;
