@@ -25,14 +25,14 @@ const isActive = href === pathname || href === '/' + subpath?.[0]
     }
   }
   span {
-    @apply color-text relative h-full px-8 mx-8 inline-block decoration-none;
+    @apply color-text relative h-full px-2 mx-2 inline-block decoration-none;
 
     &.active {
       @apply font-bold;
     }
     &:after {
       content: '';
-      @apply absolute w-full h-2 bottom-0 left-0 bg-text;
+      @apply absolute w-full h-0.5 bottom-0 left-0 bg-text;
     }
 
     &:not(.active):after {

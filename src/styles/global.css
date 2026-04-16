@@ -7,15 +7,15 @@
 @import './theme.css';
 
 ::-webkit-scrollbar {
-  @apply h-6 w-6;
+  @apply h-1.5 w-1.5;
 }
 
 ::-webkit-scrollbar-track {
-  @apply border-rd-3 bg-transparent;
+  @apply border-rd-1 bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-sb-thumb border-rd-3;
+  @apply bg-sb-thumb border-rd-1;
 }
 
 ::view-transition-old(root),
@@ -24,18 +24,12 @@
   mix-blend-mode: normal;
 }
 
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 9999;
-}
-
+::view-transition-old(root),
 .dark::view-transition-new(root) {
   z-index: 1;
 }
 
+::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 9999;
 }
@@ -52,7 +46,7 @@ html {
 body {
   font-family: 'Atkinson', sans-serif;
 
-  @apply color-text bg-bg overflow-hidden text-20 line-height-relaxed m-0 p-0 break-words;
+  @apply color-text bg-bg overflow-hidden text-5 line-height-relaxed m-0 p-0 break-words;
 
   /* background-image:
     linear-gradient(
@@ -96,7 +90,7 @@ h5,
 h6 {
   font-family: 'Poetsen One', sans-serif;
 
-  @apply: color-title m-b-8 line-height-tight;
+  @apply: color-title m-b-2 line-height-tight;
 }
 h1 {
   font-size: 3.052em;

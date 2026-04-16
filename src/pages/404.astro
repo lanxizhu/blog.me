@@ -8,13 +8,13 @@ import { MINE_NAME } from '@/consts'
   <slot name="style">
     <style lang="scss">
       :global(p) {
-        @apply relative select-none w-fit m-0 text-24 tracking-0.2 whitespace-pre-wrap;
+        @apply relative select-none w-fit m-0 text-6 tracking-0.2 whitespace-pre-wrap;
 
         &:last-child:after {
           content: '';
           animation: flashing 0.5s ease-in-out infinite;
 
-          @apply absolute w-16 h-32 right-0 top-0 block border-color-bg-reverse border-b-2 border-b-solid translate-x-100%;
+          @apply absolute w-4 h-8 right-0 top-0 block border-color-bg-reverse border-b-2 border-b-solid translate-x-100%;
         }
       }
 
@@ -128,7 +128,7 @@ import { MINE_NAME } from '@/consts'
     add()
   </script>
 
-  <div flex-center gap-40 flex-col>
+  <div flex-center gap-10 flex-col>
     <Gravatar size={160} />
     <button btn-rect>
       <a color-text hover:color-text href="/">Back to Home</a>

@@ -4,6 +4,7 @@ import presetRemToPx from '@unocss/preset-rem-to-px'
 import {
   defineConfig,
   presetAttributify,
+  presetIcons,
   presetWind3,
   transformerDirectives,
 } from 'unocss'
@@ -20,9 +21,9 @@ export default defineConfig({
 
     'transition-base': `transition transition-property-all transition-duration-300`,
 
-    'btn-base': `w-fit color-text bg-bg cursor-pointer border-rd-50 border-none op40 hover:op60 hover:bg-gray select-none transition-base`,
-    'btn-rect': `btn-base px-20 py-10 bg-gray op60 hover:op100`,
-    'btn-circle': `btn-base grid-center p-20`,
+    'btn-base': `w-fit color-text bg-bg cursor-pointer border-rd-12 border-none op40 hover:op60 hover:bg-gray select-none transition-base`,
+    'btn-rect': `btn-base px-5 py-2 bg-gray op60 hover:op100`,
+    'btn-circle': `btn-base grid-center p-5`,
   },
 
   rules: [
@@ -31,9 +32,17 @@ export default defineConfig({
   presets: [
     presetWind3(),
     presetTheme({ theme: { dark, light } }) as any,
-    presetRemToPx({ baseFontSize: 4 }),
+    // presetRemToPx({ baseFontSize: 4 }),
     presetAttributify({
       /* preset options */
+    }),
+    presetIcons({
+      extraProperties: {
+        'display': 'inline-block',
+        'height': '1.2em',
+        'width': '1.2em',
+        'vertical-align': 'text-bottom',
+      },
     }),
   ],
 
