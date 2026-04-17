@@ -7,31 +7,38 @@ import ThemeToggle from './ThemeToggle.astro'
 import ToTop from './ToTop.astro'
 ---
 
-<header m-0 px-4>
-  <nav flex-center justify-between>
+<header m-0 py-6 px-8>
+  <nav flex-center justify-between gap-4>
     <h2 m-0><a text-center select-none font-bold href="/">{SITE_TITLE}</a></h2>
 
-    <div class="internal-links">
+    <span flex-1></span>
+
+    <div class="internal-links flex">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/project">Project</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
       <HeaderLink href="/4asdad04">404</HeaderLink>
     </div>
-    <div class="social-links flex">
-      <ThemeToggle />
+
+    <div class="social-links flex-center">
       <a href="https://m.webtoo.ls/@astro" target="_blank">
         <span sr-only>Follow Astro on Mastodon</span>
-        <Icon icon="mastodon" />
+        <!-- <Icon icon="mastodon" /> -->
+        <div i-ri-mastodon-line></div>
       </a>
       <a href="https://twitter.com/astrodotbuild" target="_blank">
         <span sr-only>Follow Astro on Twitter</span>
-        <Icon icon="twitter" />
+        <!-- <Icon icon="twitter" /> -->
+        <!-- <div i-uil-twitter-alt></div> -->
+        <div i-ri:twitter-x-line></div>
       </a>
       <a href="https://github.com/withastro/astro" target="_blank">
         <span sr-only>Go to Astro's GitHub repo</span>
-        <Icon icon="github" />
+        <!-- <Icon icon="github" /> -->
+        <div i-uil-github-alt></div>
       </a>
+      <ThemeToggle />
     </div>
 
     <ToTop />
@@ -39,7 +46,7 @@ import ToTop from './ToTop.astro'
 </header>
 <style lang="scss">
   header {
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    box-shadow: 0 px 4px rgba(var(--black), 5%);
   }
 
   h2 {
@@ -80,8 +87,10 @@ import ToTop from './ToTop.astro'
   }
 
   .social-links {
+    grid-gap: 1.2rem;
+
     a {
-      @apply flex-center px-2;
+      @apply flex-center px-0 color-text op60 hover:op100;
     }
   }
   @media (max-width: 720px) {

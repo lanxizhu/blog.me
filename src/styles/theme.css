@@ -11,6 +11,7 @@
 }
 
 :root.dark {
-  --bg-grid-color: #7272724d;
+  --black: 255, 237, 230;
+  --bg-grid-color: #050505;
   --gray-color: rgb(var(--gray-light));
 }

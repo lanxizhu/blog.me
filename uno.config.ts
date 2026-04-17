@@ -49,7 +49,17 @@ export default defineConfig({
             provider: 'none',
           },
         ],
-        'saira-stencil': 'Saira Stencil',
+        'saira-stencil': [
+          {
+            name: 'Saira Stencil',
+            weights: ['400', '700'],
+            italic: true,
+          },
+          {
+            name: 'sans-serif',
+            provider: 'none',
+          },
+        ],
         'poetsen-one': [
           {
             name: 'Poetsen One',
@@ -71,8 +81,8 @@ export default defineConfig({
     presetIcons({
       extraProperties: {
         'display': 'inline-block',
-        'height': '1.5em',
-        'width': '1.5em',
+        'height': '1.2em',
+        'width': '1.2em',
         'vertical-align': 'text-bottom',
       },
     }),
