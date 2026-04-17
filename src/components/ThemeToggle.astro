@@ -35,22 +35,24 @@ import Icon from './Icon.astro'
 
         document.documentElement.classList.add('theme-clip')
 
+        const clipSize = ['0px', `${endRadius}px`]
+
         /**
          * see: https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
          */
         const transition = document.startViewTransition(() => func())
 
         transition.ready.then(() => {
-          console.log('transition.ready')
-          const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
+          document.documentElement.style.setProperty('--tx', `${x}px`)
+          document.documentElement.style.setProperty('--ty', `${y}px`)
 
           document.documentElement.animate(
             {
-              clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
+              '--clip-size': isDark.value ? [...clipSize].reverse() : clipSize,
             },
             {
-              duration: 400,
-              easing: 'ease-out',
+              duration: 480,
+              easing: 'ease-in-out',
               fill: 'forwards',
               pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
             },
@@ -59,6 +61,8 @@ import Icon from './Icon.astro'
 
         transition.finished.then(() => {
           document.documentElement.classList.remove('theme-clip')
+          document.documentElement.style.removeProperty('--tx')
+          document.documentElement.style.removeProperty('--ty')
         })
       }
 

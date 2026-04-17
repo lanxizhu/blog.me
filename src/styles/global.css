@@ -18,6 +18,12 @@
   @apply bg-sb-thumb border-rd-1;
 }
 
+@property --clip-size {
+  syntax: '<length>';
+  initial-value: 9999px;
+  inherits: false;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -32,6 +38,20 @@
 ::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 9999;
+}
+
+.theme-clip::view-transition-old(root),
+.theme-clip::view-transition-new(root) {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--tx, 50%) var(--ty, 50%),
+    #000 max(0px, calc(var(--clip-size) - 5rem)),
+    transparent var(--clip-size)
+  );
+  mask-image: radial-gradient(
+    circle at var(--tx, 50%) var(--ty, 50%),
+    #000 max(0px, calc(var(--clip-size) - 5rem)),
+    transparent var(--clip-size)
+  );
 }
 
 /* Disable all other view transition when switching theme colors */
