@@ -6,12 +6,24 @@
   --gray-dark: 34, 41, 57;
   --box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
 
-  --bg-grid-color: #e1e1e1;
+  --bg-grid-color: #ffffff;
   --gray-color: rgb(var(--gray-dark));
+  background: #ffffff;
+
+  color-scheme: light dark;
 }
 
 :root.dark {
   --black: 255, 237, 230;
   --bg-grid-color: #050505;
   --gray-color: rgb(var(--gray-light));
+  background: #050505;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.dark {
+    --bg-grid-color: #050505;
+  }
 }
