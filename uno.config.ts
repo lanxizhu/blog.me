@@ -80,4 +80,9 @@ export default defineConfig({
   ],
 
   transformers: [transformerDirectives()],
+  content: {
+    pipeline: {
+      include: ['src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}'],
+    },
+  },
 })

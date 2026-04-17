@@ -7,7 +7,13 @@ import UnoCSS from 'unocss/astro'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [mdx(), sitemap(), UnoCSS()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    UnoCSS({
+      injectReset: true, // or a path to the reset file
+    }),
+  ],
   vite: {
     resolve: {
       alias: {
