@@ -66,7 +66,7 @@ html {
 body {
   font-family: 'Atkinson', sans-serif;
 
-  @apply color-text bg-bg overflow-hidden text-5 line-height-relaxed m-0 p-0 break-words;
+  @apply color-text overflow-hidden text-4 line-height-relaxed m-0 p-0 break-words;
 
   /* background-image:
     linear-gradient(
