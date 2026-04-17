@@ -70,16 +70,18 @@ import Icon from './Icon.astro'
   customElements.define('theme-toggle', ThemeToggle)
 </script>
 
-<theme-toggle>
-  <button id="btn">
+<theme-toggle flex-center>
+  <!-- <button id="btn">
     <Icon icon="sun" class="icon light" />
     <Icon icon="moon" class="icon dark" />
-  </button>
+  </button> -->
+
+  <div id="btn" i-ri-sun-line dark:i-ri-moon-line></div>
 </theme-toggle>
 
 <style lang="scss">
-  button {
-    @apply flex cursor-pointer border-none bg-transparent py-4 px-2;
+  #btn {
+    @apply text-4 cursor-pointer py-0 px-0 color-text op60 hover:op100;
   }
 
   .icon {
