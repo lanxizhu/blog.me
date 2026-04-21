@@ -1,0 +1,66 @@
+---
+import { BaseLayout } from '@/layouts'
+import { getCollection } from 'astro:content'
+import { FormattedDate } from '@/components'
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+---
+
+<BaseLayout>
+  <slot name="style" slot="style">
+    <style lang="scss">
+      .timeline {
+        .timeline-item {
+          .time-wrapper {
+            &::before {
+              content: '';
+              position: absolute;
+              left: -6px;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: var(--accent);
+              border: 2px solid var(--bg-grid-color);
+            }
+          }
+
+          .content {
+            img {
+              width: 100%;
+              height: auto;
+              border-radius: 4px;
+              margin-bottom: 0.5rem;
+            }
+          }
+        }
+      }
+    </style>
+  </slot>
+
+  <h1 font-saira-stencil mb-12>🧑‍🚀 Blog Time Line</h1>
+
+  <div class="timeline relative pl-8 border-l-2 border-gray">
+    {
+      posts.map((post) => (
+        <div class="timeline-item relative mb-12">
+          <div class="time-wrapper sticky top-4 z-5 pl-2  -ml-8 flex items-center">
+            <div font-saira-stencil font-bold pl-6 color-link class="time">
+              <FormattedDate date={post.data.pubDate} />
+            </div>
+          </div>
+          <div class="content transition-base p-4 mt-2 border border-gray rounded-lg hover:border-link hover:translate-x-1">
+            <img src={post.data.heroImage} alt={post.data.title} />
+            <a href={`/blog/${post.id}/`}>
+              <h2 font-saira-stencil mt-0 text-6 color-text>
+                {post.data.title}
+              </h2>
+            </a>
+            <p mb-0 color-tip>
+              {post.data.description}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>
