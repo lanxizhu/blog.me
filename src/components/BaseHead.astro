@@ -43,4 +43,8 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<ClientRouter />
+<!--
+  Only include the ClientRouter in production, as it is not needed during development and can cause issues with hot module replacement (HMR).
+  See: https://github.com/withastro/astro/issues/16373#issuecomment-4273583023
+-->
+{import.meta.env.PROD && <ClientRouter />}
