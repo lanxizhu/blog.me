@@ -3,12 +3,15 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
+import { remarkModifiedTime } from './remark-modified-time.js'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
   integrations: [
-    mdx(),
+    mdx({
+      remarkPlugins: [remarkModifiedTime],
+    }),
     sitemap(),
     UnoCSS({
       injectReset: true, // or a path to the reset file

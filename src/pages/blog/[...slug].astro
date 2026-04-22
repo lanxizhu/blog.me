@@ -3,6 +3,10 @@ import { BlogPost } from '@/layouts'
 import { render } from 'astro:content'
 import { getEntry } from 'astro:content'
 import { getCollection, type CollectionEntry } from 'astro:content'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+
+dayjs.extend(utc)
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -22,6 +26,10 @@ if (!entry) {
   throw new Error(`Could not find blog post with id: ${post.id}`)
 }
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)
+
+const lastModified = dayjs(remarkPluginFrontmatter.lastModified).utc().format('HH:mm:ss DD MMMM YYYY UTC')
+
+post.data.lastModified = lastModified
 ---
 
 <BlogPost {...post.data}>

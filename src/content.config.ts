@@ -3,7 +3,7 @@ import { z } from 'astro/zod'
 import { defineCollection } from 'astro:content'
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({ pattern: '**/*', base: './src/content/blog' }),
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
@@ -12,6 +12,7 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
+    lastModified: z.string().optional(),
   }),
 })
 
