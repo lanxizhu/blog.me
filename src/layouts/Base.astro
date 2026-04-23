@@ -33,11 +33,34 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
 
         links.forEach((link) => {
           if (!hasOnlyText(link)) return
+
+          const text = link.dataset.text || link.textContent.trim()
           link.ariaLabel = link.textContent.trim() || link.getAttribute('href') || 'Link'
           link.dataset.text = link.ariaLabel
           link.classList.add('roll-link')
-          link.setAttribute('target', '_blank')
-          link.innerHTML = `<span>${link.ariaLabel}</span>`
+
+          link.textContent = ''
+          ;[...text].forEach((ch, i) => {
+            const wrap = document.createElement('span')
+            wrap.className = 'char-wrap'
+            wrap.style.setProperty('--i', String(i))
+            if (ch === ' ') {
+              wrap.textContent = '\u00A0'
+              link.append(wrap)
+              return
+            }
+
+            const cur = document.createElement('span')
+            cur.className = 'char'
+            cur.textContent = ch
+
+            const next = document.createElement('span')
+            next.className = 'char-next'
+            next.textContent = ch
+
+            wrap.append(cur, next)
+            link.append(wrap)
+          })
         })
       }
     </script>

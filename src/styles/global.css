@@ -61,12 +61,16 @@
 
 html {
   overflow-y: scroll;
+
+  background: var(--bg-grid-color);
+
+  @apply m-0 p-0;
 }
 
 body {
   font-family: 'Atkinson', sans-serif;
 
-  @apply color-text overflow-hidden text-4 line-height-relaxed m-0 p-0 break-words;
+  @apply color-text overflow-x-hidden text-4 line-height-relaxed m-0 p-0 break-words;
 
   /* background-image:
     linear-gradient(
@@ -196,41 +200,40 @@ img {
 }
 
 .roll-link {
+  display: inline-flex;
+  gap: 0.01em;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.char-wrap {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  font: inherit; /* 字体、字号、字重继承 p */
-  line-height: 1em; /* 行高继承 p */
-  text-decoration: none;
-  vertical-align: middle; /* 和文本基线对齐 */
+  height: 1lh;
+  vertical-align: baseline;
 }
 
-/* 原始内容：span */
-.roll-link > span {
+.char,
+.char-next {
   display: block;
-  transform: translateY(0);
+  line-height: inherit;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 30ms); /* 依次延迟 */
 }
 
-/* 新内容：从下方出现 */
-.roll-link::after {
-  content: attr(data-text);
+.char-next {
   position: absolute;
   left: 0;
   top: 100%;
-  color: inherit;
-  height: 100%;
-  transform: translateY(0);
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* 悬浮/聚焦：两者一起上移 */
-.roll-link:hover > span,
-.roll-link:focus-visible > span {
+.roll-link:hover .char,
+.roll-link:focus-visible .char {
   transform: translateY(-100%);
 }
 
-.roll-link:hover::after,
-.roll-link:focus-visible::after {
+.roll-link:hover .char-next,
+.roll-link:focus-visible .char-next {
   transform: translateY(-100%);
 }
