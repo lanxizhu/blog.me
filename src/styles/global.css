@@ -194,3 +194,43 @@ img {
 *::selection {
   @apply color-text bg-selection;
 }
+
+.roll-link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  font: inherit; /* 字体、字号、字重继承 p */
+  line-height: 1em; /* 行高继承 p */
+  text-decoration: none;
+  vertical-align: middle; /* 和文本基线对齐 */
+}
+
+/* 原始内容：span */
+.roll-link > span {
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 新内容：从下方出现 */
+.roll-link::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  color: inherit;
+  height: 100%;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 悬浮/聚焦：两者一起上移 */
+.roll-link:hover > span,
+.roll-link:focus-visible > span {
+  transform: translateY(-100%);
+}
+
+.roll-link:hover::after,
+.roll-link:focus-visible::after {
+  transform: translateY(-100%);
+}

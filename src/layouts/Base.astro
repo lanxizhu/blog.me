@@ -19,6 +19,29 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
       }
     </script>
 
+    <script>
+      const main = document.querySelector('main')
+
+      function hasOnlyText(a: HTMLAnchorElement) {
+        if (!(a instanceof HTMLAnchorElement)) return false
+        if (a.children.length > 0) return false
+        return a.textContent.trim().length > 0
+      }
+
+      if (main instanceof HTMLElement) {
+        const links = main.querySelectorAll('a')
+
+        links.forEach((link) => {
+          if (!hasOnlyText(link)) return
+          link.ariaLabel = link.textContent.trim() || link.getAttribute('href') || 'Link'
+          link.dataset.text = link.ariaLabel
+          link.classList.add('roll-link')
+          link.setAttribute('target', '_blank')
+          link.innerHTML = `<span>${link.ariaLabel}</span>`
+        })
+      }
+    </script>
+
     <slot name="style" />
   </head>
   <body>
