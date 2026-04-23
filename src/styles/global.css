@@ -226,6 +226,7 @@ img {
   position: absolute;
   left: 0;
   top: 100%;
+  user-select: none;
 }
 
 /* .roll-link:hover .char,

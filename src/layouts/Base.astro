@@ -98,6 +98,39 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
             })
           })
         })
+
+        document.addEventListener('copy', (e) => {
+          const sel = window.getSelection()
+          if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return
+
+          const range = sel.getRangeAt(0)
+          const root
+            = range.commonAncestorContainer.nodeType === Node.ELEMENT_NODE
+              ? (range.commonAncestorContainer as Element)
+              : (range.commonAncestorContainer.parentElement as Element)
+
+          // handle copy only when the selection is within a paragraph, to avoid interfering with copying code blocks or other non-text content
+          const inP = root && (root.closest('p') || root.querySelector('p'))
+          if (!inP) return
+
+          // clone the selected content so we can modify it without affecting the actual page
+          const frag = range.cloneContents()
+
+          // replace any links that have the roll-link class with their text content, to avoid copying the animated spans
+          frag.querySelectorAll?.('a.roll-link').forEach((a) => {
+            const text = (a.getAttribute('data-text') || a.textContent || '').trim()
+            a.replaceWith(document.createTextNode(text))
+          })
+
+          // extract plain text and clean up extra whitespace
+          const div = document.createElement('div')
+          div.appendChild(frag)
+          const text = div.textContent?.replace(/\s+/g, ' ').trim() || ''
+
+          if (!text) return
+          e.preventDefault()
+          e.clipboardData?.setData('text/plain', text)
+        })
       }
     </script>
 
