@@ -219,7 +219,7 @@ img {
   display: block;
   line-height: inherit;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--i) * 30ms); /* 依次延迟 */
+  transition-delay: calc(var(--i) * 30ms);
 }
 
 .char-next {
@@ -228,7 +228,7 @@ img {
   top: 100%;
 }
 
-.roll-link:hover .char,
+/* .roll-link:hover .char,
 .roll-link:focus-visible .char {
   transform: translateY(-100%);
 }
@@ -236,4 +236,4 @@ img {
 .roll-link:hover .char-next,
 .roll-link:focus-visible .char-next {
   transform: translateY(-100%);
-}
+} */

@@ -39,6 +39,9 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
           link.dataset.text = link.ariaLabel
           link.classList.add('roll-link')
 
+          const gap = 35
+          const anims: Animation[] = []
+
           link.textContent = ''
           ;[...text].forEach((ch, i) => {
             const wrap = document.createElement('span')
@@ -60,6 +63,40 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
 
             wrap.append(cur, next)
             link.append(wrap)
+
+            const timing = {
+              duration: 420,
+              delay: i * gap,
+              // endDelay: i * gap,
+              endDelay: (text.length - 1 - i) * gap * 0.5,
+              easing: 'cubic-bezier(.22,1,.36,1)',
+              fill: 'both',
+            }
+
+            const a1 = cur.animate([{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }], timing)
+
+            const a2 = next.animate([{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }], timing)
+
+            a1.pause()
+            a1.currentTime = 0
+            a2.pause()
+            a2.currentTime = 0
+
+            anims.push(a1, a2)
+          })
+
+          link.addEventListener('pointerenter', () => {
+            anims.forEach((a) => {
+              a.playbackRate = 1
+              a.play()
+            })
+          })
+
+          link.addEventListener('pointerleave', () => {
+            anims.forEach((a) => {
+              a.playbackRate = 1
+              a.reverse()
+            })
           })
         })
       }
