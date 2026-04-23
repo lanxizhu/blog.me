@@ -70,7 +70,6 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
               // endDelay: i * gap,
               endDelay: (text.length - 1 - i) * gap * 0.5,
               easing: 'cubic-bezier(.22,1,.36,1)',
-              fill: 'both',
             }
 
             const a1 = cur.animate([{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }], timing)
