@@ -71,6 +71,16 @@ export default defineConfig({
             provider: 'none',
           },
         ],
+        'jetbrains-mono': [{
+          name: 'JetBrains Mono',
+          weights: ['400', '700'],
+          italic: true,
+        }],
+        'google-sans-code': [{
+          name: 'Google Sans Code',
+          weights: ['400', '700'],
+          italic: true,
+        }],
       },
     }),
     presetTheme({ theme: { dark, light } }) as any,

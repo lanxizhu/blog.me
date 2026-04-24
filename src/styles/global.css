@@ -165,10 +165,12 @@ code {
   padding: 2px 5px;
   background-color: var(--bg-grid-color);
   border-radius: 2px;
+  @apply font-jetbrains-mono;
 }
 pre {
   padding: 1.5em;
   border-radius: 8px;
+  @apply font-jetbrains-mono;
 }
 pre > code {
   all: unset;
