@@ -13,13 +13,13 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/mdx": "^6.0.1",
     "@astrojs/rss": "4.0.18",
-    "@astrojs/sitemap": "3.7.2",
+    "@astrojs/sitemap": "3.7.3",
     "@types/dom-view-transitions": "^1.0.6",
     "@vueuse/core": "^14.2.1",
-    "astro": "^6.1.7",
+    "astro": "^6.4.3",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.20",
     "pixi.js": "^8.18.1",
