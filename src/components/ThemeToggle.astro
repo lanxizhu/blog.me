@@ -45,6 +45,11 @@ import Icon from './Icon.astro'
         transition.ready.then(() => {
           document.documentElement.style.setProperty('--tx', `${x}px`)
           document.documentElement.style.setProperty('--ty', `${y}px`)
+          // document.documentElement.style.setProperty('--r', `${endRadius}px`)
+          document.documentElement.style.setProperty(
+            '--clip-size',
+            isDark.value ? [...clipSize].reverse().join(' ') : clipSize.join(' '),
+          )
 
           document.documentElement.animate(
             {
@@ -52,7 +57,7 @@ import Icon from './Icon.astro'
             },
             {
               duration: 480,
-              easing: 'ease-in-out',
+              // easing: 'ease-in-out',
               fill: 'forwards',
               pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
             },
@@ -61,8 +66,9 @@ import Icon from './Icon.astro'
 
         transition.finished.then(() => {
           document.documentElement.classList.remove('theme-clip')
-          document.documentElement.style.removeProperty('--tx')
-          document.documentElement.style.removeProperty('--ty')
+          // document.documentElement.style.removeProperty('--tx')
+          // document.documentElement.style.removeProperty('--ty')
+          // document.documentElement.style.removeProperty('--r')
         })
       }
 

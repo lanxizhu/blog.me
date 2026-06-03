@@ -42,14 +42,9 @@
 
 .theme-clip::view-transition-old(root),
 .theme-clip::view-transition-new(root) {
-  -webkit-mask-image: radial-gradient(
-    circle at var(--tx, 50%) var(--ty, 50%),
-    #000 max(0px, calc(var(--clip-size) - 5rem)),
-    transparent var(--clip-size)
-  );
   mask-image: radial-gradient(
     circle at var(--tx, 50%) var(--ty, 50%),
-    #000 max(0px, calc(var(--clip-size) - 5rem)),
+    #000 max(0px, calc(var(--clip-size) - 5em)),
     transparent var(--clip-size)
   );
 }
