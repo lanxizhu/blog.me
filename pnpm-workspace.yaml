@@ -5,7 +5,9 @@ allowBuilds:
   vue-demi: true
 
 minimumReleaseAgeExclude:
-  - astro@6.4.3
+  - '@astrojs/markdown-satteri@0.3.1'
+  - '@astrojs/mdx@7.0.0'
+  - astro@7.0.0
 
 shellEmulator: true
 
